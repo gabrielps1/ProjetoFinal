@@ -1,0 +1,262 @@
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    color: #4CAF50;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Tabela e estilos globais */
+table {
+    width: 100%; /* A tabela ocupará toda a largura disponível */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+    margin: 0 auto; /* Centraliza a tabela na tela (se necessário) */
+    table-layout: fixed; /* Distribui uniformemente o espaço das colunas */
+    background-color: white;
+}
+
+th, td {
+    padding: 1rem; /* Ajusta o espaçamento interno das células */
+    border: 1px solid #ccc; /* Adiciona borda às células */
+    text-align: left; /* Alinha o texto à esquerda */
+    word-wrap: break-word; /* Permite quebra de palavras longas */
+}
+
+th {
+    background-color: #4CAF50; /* Fundo verde no cabeçalho */
+    color: white; /* Texto branco no cabeçalho */
+    font-weight: bold;
+}
+
+td {
+    text-align: left; /* Alinha os dados das células à esquerda */
+    vertical-align: middle; /* Alinha o conteúdo verticalmente ao centro */
+}
+
+td.acao {
+    text-align: center; /* Centraliza o conteúdo das células de ações */
+    white-space: nowrap; /* Impede quebra de linha dentro das ações */
+}
+
+/* Tabela */
+table.tabela-fichas {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.tabela-fichas thead tr {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+.tabela-fichas th, .tabela-fichas td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.tabela-fichas tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tabela-fichas tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo do elemento <select> */
+select {
+    width: 200px; /* Ajusta a largura do select */
+    padding: 10px; /* Adiciona preenchimento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda ao redor do select */
+    border-radius: 5px; /* Cantos arredondados */
+    background-color: #f9f9f9; /* Cor de fundo do select */
+    transition: border-color 0.3s ease; /* Transição suave na borda */
+}
+
+/* Quando o select recebe foco (ao ser clicado) */
+select:focus {
+    border-color: #5c9bff; /* Altera a cor da borda ao focar */
+    outline: none; /* Remove o contorno padrão ao focar */
+}
+
+/* Estilo das opções dentro do select */
+option {
+    padding: 10px; /* Preenchimento das opções */
+    font-size: 16px; /* Tamanho da fonte */
+    background-color: white; /* Cor de fundo das opções */
+    color: #333; /* Cor do texto das opções */
+}
+
+/* Altera o fundo das opções ao passar o mouse */
+option:hover {
+    background-color: #eaeaea; /* Fundo cinza claro ao passar o mouse */
+}
+
+label {
+    padding-left: 20px; /* Move o rótulo 20px para a direita */
+    font-size: 16px;
+}
+
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    table.tabela-fichas {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Botões */
+.btn-editar, .btn-danger {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #45a049;
+}
+
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilo dos links */
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #4CAF50;
+    padding: 0.5rem 1rem;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Botões e ações do formulário */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.input-group{
+    margin-bottom: 20px
+}
+
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+.btn-link {
+    background-color: white;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-link:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-danger {
+    background-color: red; /* Cor de fundo vermelho */
+    color: white; /* Texto branco */
+    border: none; /* Sem borda */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de clique */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    transition: background-color 0.3s; /* Efeito de transição */
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.btn-danger:hover {
+    background-color: darkred; /* Vermelho mais escuro ao passar o mouse */
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-submit, .btn-link {
+        width: 100%;
+        margin-left: 0;
+    }
+}

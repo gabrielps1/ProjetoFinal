@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Produtos</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Listagem de Produtos</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Classe Química</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="produto : ${lista}">
+            <td th:text="${produto.nomeProduto}"></td>
+            <td th:text="${produto.classeQuimica}"></td>
+            <td>
+                <a th:href="@{/produtos/formulario?idProduto={idProduto}(idProduto=${produto.idProduto})}">Editar</a>
+
+                <form th:action="@{/produtos}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" th:value="${produto.idProduto}">
+                    <input type="submit" value="Excluir">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="display: flex; justify-content: center;">
+        <a href="/produtos/formulario">Novo Produto</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>

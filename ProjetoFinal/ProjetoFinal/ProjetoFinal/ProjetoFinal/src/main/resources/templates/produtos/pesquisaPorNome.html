@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{template.html}">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesquisar Produtos por Nome</title>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Pesquisar Produtos por Nome</h1>
+
+  <!-- Formulário para pesquisa -->
+  <form th:action="@{/produtos/pesquisaPorNome}" method="get">
+    <div>
+      <label for="nomeProduto">Nome do Produto:</label>
+      <!-- O name deve ser 'nomeProduto' para coincidir com o parâmetro esperado no controlador -->
+      <input type="text" id="nomeProduto" name="nomeProduto" th:value="${nomeProduto}" required />
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-submit" >Pesquisar</button>
+    </div>
+  </form>
+
+  <!-- Exibe a lista de produtos apenas se houver uma pesquisa -->
+  <div th:if="${produtos != null}">
+    <!-- Se houver produtos, exibe os resultados -->
+    <h2 th:if="${produtos != null and !produtos.isEmpty()}">Resultados:</h2>
+    <table th:if="${produtos != null and !produtos.isEmpty()}">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Classe Química</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Exibe os produtos encontrados -->
+      <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.idProduto}"></td>
+        <td th:text="${produto.nomeProduto}"></td>
+        <td th:text="${produto.classeQuimica}"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- Se não houver produtos, exibe mensagem -->
+    <div th:if="${produtos == null or produtos.isEmpty()}" style="display: flex; justify-content: center; margin-top: 20px;">
+      <p>Nenhum produto encontrado com esse nome.</p>
+    </div>
+  </div>
+
+  <!-- Link para voltar ao menu principal -->
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <a href="/produtos/pesquisaPorNome">Novo</a>
+    <a href="/menus/principal">Menu Principal</a>
+  </div>
+</div>
+</body>
+</html>

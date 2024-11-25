@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Produto</h1>
+
+    <main>
+        <form th:action="@{'/produtos/formulario'}" method="post">
+            <input type="hidden" name="_method" value="put" th:if="${produto!=null}">
+            <input type="hidden" name="idProduto" th:value="${produto?.idProduto}">
+
+            <!-- Nome do Produto -->
+            <div class="input-group">
+                <label for="nomeProduto">Nome do Produto:</label>
+                <input id="nomeProduto" name="nomeProduto" th:value="${produto?.nomeProduto}" required>
+            </div>
+
+            <!-- Classe Química -->
+            <div class="input-group">
+                <label for="classeQuimica">Classe Química:</label>
+                <input id="classeQuimica" name="classeQuimica" th:value="${produto?.classeQuimica}" required>
+            </div>
+
+            <!-- Botões -->
+            <div class="form-actions">
+                <input type="submit" class="btn-submit" th:value="${produto == null} ? 'Cadastrar' : 'Atualizar'">
+                <a class="btn-link" href="/menus/principal">Menu Principal</a>
+            </div>
+        </form>
+</div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesquisar Ficha por Produto Químico</title>
+  <!-- Certifique-se de que o Bootstrap está sendo carregado corretamente -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Seu CSS personalizado -->
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Pesquisar Ficha por Produto Químico</h1>
+
+  <!-- Formulário para pesquisar o produto químico -->
+  <form th:action="@{/fichas/pesquisaProdutoQuimico}" method="get">
+
+    <div class="input-group mb-3">
+      <!-- Label com a classe input-group-text para alinhar com o campo de entrada -->
+      <label for="produtoQuimico" class="input-group-text">Produto Químico:</label>
+
+      <!-- Campo de entrada com a classe form-control para garantir o estilo adequado -->
+      <input type="text" id="produtoQuimico" name="produtoQuimico" th:value="${produtoQuimico}" required class="form-control" />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit">Pesquisar</button>
+    </div>
+  </form>
+
+  <!-- Exibição dos resultados -->
+  <h2 th:if="${fichas != null and fichas.size() > 0}">Resultados da Pesquisa para: <span th:text="${produtoQuimico}"></span></h2>
+
+  <!-- Tabela de resultados -->
+  <table th:if="${fichas != null and fichas.size() > 0}" class="tabela-fichas">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Produto Químico</th>
+      <th>Como Aplica Produto</th>
+      <th>Via Exposição</th>
+      <th>Ficou Doente</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ficha : ${fichas}">
+      <td th:text="${ficha.idFicha}"></td>
+      <td th:text="${ficha.produtoQuimico}"></td>
+      <td th:text="${ficha.comoAplicaProduto}"></td>
+      <td th:text="${ficha.viaExposicao}"></td>
+      <td th:text="${ficha.ficouDoente}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Mensagem se não houver resultados -->
+  <div th:if="${fichas == null or fichas.size() == 0}">
+    <p th:if="${produtoQuimico != ''}">Nenhuma ficha encontrada para o produto químico "<span th:text="${produtoQuimico}"></span>".</p>
+    <p th:if="${produtoQuimico == ''}">Por favor, insira um nome de produto químico para realizar a pesquisa.</p>
+  </div>
+
+  <!-- Links para novas pesquisas ou ir ao menu principal -->
+  <div style="display: flex; justify-content: center;">
+    <a href="/fichas/pesquisaProdutoQuimico" class="btn-link">Novo</a>
+    <a href="/menus/principal" class="btn-link">Menu Principal</a>
+  </div>
+</div>
+
+<!-- Carregar o JS do Bootstrap (caso necessário) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

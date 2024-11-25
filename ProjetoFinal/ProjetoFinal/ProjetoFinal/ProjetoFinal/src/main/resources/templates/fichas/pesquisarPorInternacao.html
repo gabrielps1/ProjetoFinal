@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesquisar Pessoas com Internação</title>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Pesquisar por Pessoas que já foram Internadas</h1>
+  <!-- Formulário de pesquisa -->
+  <form th:action="@{/fichas/pesquisarPorInternacao}" method="get">
+    <div>
+      <label for="internado">Internado:</label>
+      <select id="internado" name="internado" required>
+        <option value="SIM">Sim</option>
+        <option value="NAO">Não</option>
+      </select>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-submit" >Pesquisar</button>
+    </div>
+  </form>
+
+  <h2>Resultados</h2>
+  <!-- Verifica se a lista de fichas está vazia -->
+  <div th:if="${#lists.isEmpty(fichas)}">
+    <p>Nenhum resultado encontrado.</p>
+  </div>
+
+  <!-- Exibe a tabela apenas se houver fichas -->
+  <table th:if="${not #lists.isEmpty(fichas)}">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Internado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ficha : ${fichas}">
+      <td th:text="${ficha.idFicha}"></td>
+      <td th:text="${ficha.pessoa != null ? ficha.pessoa.nomePessoa : 'Pessoa não especificada'}"></td>
+      <td th:text="${ficha.pessoa != null ? ficha.pessoa.endereco : 'Endereço não especificado'}"></td>
+      <td th:text="${ficha.internado}"></td>
+      <!-- Exibindo o estado de internamento -->
+    </tr>
+    </tbody>
+  </table>
+  <div style="display: flex; justify-content: center;">
+    <a href="/fichas/pesquisaPorInternacao">Novo</a>
+    <a href="/menus/principal">Menu Principal</a>
+  </div>
+</div>
+</body>
+</html>

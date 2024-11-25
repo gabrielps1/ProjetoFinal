@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Fichas</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:decorate="~{layout.html}">
+    <div layout:fragment="conteudo">
+        <h1>Listagem de Fichas</h1>
+
+        <!-- Tabela de listagem de fichas -->
+        <table class="tabela-fichas">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pessoa</th>
+                <th>Produto Químico</th>
+                <th>Como Aplica Produto</th>
+                <th>Via Exposição</th>
+                <th>Estado de Saúde</th>
+                <th>Vezes Doente</th>
+                <th>Internado</th>
+                <th>Vezes Internado</th>
+                <th>Tempo Aconteceu</th>
+                <th>Tipo de Contato</th>
+                <th>Utiliza Equip. de Proteção</th>
+                <th>Roupa Imprópria</th>
+                <th>Bota</th>
+                <th>Luvas</th>
+                <th>Máscaras</th>
+                <th>Óculos de Proteção</th>
+                <th>Protetor Auricular</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ficha : ${fichas}">
+                <td th:text="${ficha.idFicha}"></td>
+                <td th:text="${ficha.pessoa != null ? ficha.pessoa.nomePessoa : 'Pessoa não especificada'}">
+                <td th:text="${ficha.produtoQuimico != null ? ficha.produtoQuimico.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.comoAplicaProduto != null ? ficha.comoAplicaProduto.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.viaExposicao != null ? ficha.viaExposicao.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.ficouDoente != null ? ficha.ficouDoente.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.vezesDoente != null ? ficha.vezesDoente : 'Não especificado'}"></td>
+                <td th:text="${ficha.internado != null ? ficha.internado.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.vezesInternado != null ? ficha.vezesInternado : 'Não especificado'}"></td>
+                <td th:text="${ficha.tempoAconteceu != null ? ficha.tempoAconteceu.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.tipoContato != null ? ficha.tipoContato.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.utilizaEquipamentosProtecao != null ? ficha.utilizaEquipamentosProtecao.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.roupaImprapropiada != null ? ficha.roupaImprapropiada.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.bota != null ? ficha.bota.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.luvas != null ? ficha.luvas.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.mascaras != null ? ficha.mascaras.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.oculosProtecao != null ? ficha.oculosProtecao.name() : 'Não especificado'}"></td>
+                <td th:text="${ficha.protetorAuricular != null ? ficha.protetorAuricular.name() : 'Não especificado'}"></td>
+                <td>
+                    <a class="btn-editar" th:href="@{/fichas/formulario?idFicha={idFicha}(idFicha=${ficha.idFicha})}">Editar</a>
+                    <form th:action="@{/fichas/{idFicha}(idFicha=${ficha.idFicha})}" method="post" style="display: inline;">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta ficha?');">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="acoes">
+            <a href="/fichas/formulario" class="btn-submit">Novo</a>
+            <a href="/menus/principal" class="btn-link">Menu Principal</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

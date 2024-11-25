@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Listagem de Pessoas</title>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+  <h1>Listagem de Pessoas</h1>
+
+  <!-- Tabela de listagem -->
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pessoa : ${listaPessoas}">
+      <td th:text="${pessoa.nomePessoa}"></td>
+      <td th:text="${pessoa.endereco}"></td>
+      <td class="acao">
+        <a class="btn-link" th:href="@{/pessoas/formulario?idPessoa={idPessoa}(idPessoa=${pessoa.idPessoa})}">Editar</a>
+        <form th:action="@{/pessoas}" method="post" style="display: inline;">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="id" th:value="${pessoa.idPessoa}">
+          <input type="submit" class="btn-submit" value="Excluir">
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Links para ações -->
+  <div class="form-actions">
+    <a href="/pessoas/formulario" class="btn-submit">Novo</a>
+    <a href="/menus/principal" class="btn-link">Menu Principal</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<header>
+    <h1>Menu Principal</h1>
+</header>
+<main>
+    <h1>Menu Principal</h1>
+    <div class="link-section">
+        <h3>Cadastro e Listagem de Pessoas</h3>
+        <a href="/pessoas/formulario">Cadastrar Pessoa</a>
+        <a href="/pessoas/listagem">Listar Pessoas</a>
+    </div>
+
+    <div class="link-section">
+        <h3>Cadastro e Listagem de Fichas</h3>
+        <a href="/fichas/formulario">Cadastrar Ficha</a>
+        <a href="/fichas/listagem">Listar Fichas</a>
+    </div>
+
+    <div class="link-section">
+        <h3>Cadastro e Listagem de Produtos</h3>
+        <a href="/produtos/formulario">Cadastrar Produto</a>
+        <a href="/produtos/listagem">Listar Produtos</a>
+    </div>
+
+    <div class="link-section">
+        <h3>Pesquisas</h3>
+        <a href="/fichas/pesquisaProdutoQuimico">Pesquisar Ficha por Produto Químico</a>
+        <br>
+        <a href="/fichas/pesquisaFicouDoente">Pesquisar Pessoas que ficaram Doentes</a>
+        <br>
+        <a href="/produtos/pesquisaPorNome">Pesquisar Produtos por Nome (Consulta Nativa)</a>
+        <br>
+        <a href="/fichas/pesquisarPorInternacao">Pesquisar por Pessoas que já foram Internadas</a>
+        <br>
+        <a href="/fichas/pesquisaPorViaExposicao">Pesquisar por Via de Exposição</a>
+    </div>
+</main>
+</body>
+</html>

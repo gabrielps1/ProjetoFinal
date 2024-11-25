@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pessoas</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <header>
+        <h1>Cadastro de Pessoas</h1>
+    </header>
+
+   <h1>Cadastro de pessoas</h1>
+
+    <!-- Formulário para cadastro ou edição -->
+    <main>
+        <form th:action="@{/pessoas/formulario}" method="post">
+            <input type="hidden" name="_method" value="put" th:if="${pessoas != null}">
+            <input type="hidden" name="idPessoa" th:value="${pessoas?.idPessoa}">
+
+            <div class="input-group">
+                <b><label for="nomePessoa">Nome:</label></b>
+                <input id="nomePessoa" name="nomePessoa" th:value="${pessoas?.nomePessoa}" required>
+            </div>
+
+            <div class="input-group">
+                <b><label for="endereco">Endereço:</label></b>
+                <input id="endereco" name="endereco" th:value="${pessoas?.endereco}" required>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" class="btn-submit" th:value="${pessoas == null} ? 'Cadastrar' : 'Atualizar'">
+                <a href="/menus/principal" class="btn-link">Menu Principal</a>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>

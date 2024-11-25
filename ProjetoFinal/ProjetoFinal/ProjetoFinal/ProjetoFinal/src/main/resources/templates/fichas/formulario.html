@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Ficha</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Ficha</h1>
+
+    <!-- Formulário para cadastro ou edição -->
+    <form th:action="@{'/fichas/formulario'}" method="post" th:object="${fichas}">
+        <!-- Adicionar ID Ficha para edição -->
+        <input type="hidden" name="_method" value="put" th:if="${fichas?.idFicha != null}">
+        <input type="hidden" name="idFicha" th:value="${fichas?.idFicha}">
+
+
+        <div>
+            <label for="pessoa">Pessoa:</label>
+            <select id="pessoa" th:field="*{pessoa}">
+                <option th:each="pessoa : ${ListaPessoa}" th:value="${pessoa.idPessoa}" th:text="${pessoa.nomePessoa}"
+                        th:if="${ListaPessoa != null}"></option>
+            </select>
+        </div>
+
+        <!-- Produto Químico -->
+        <div>
+            <label for="produtoQuimico">Produto químico teve contato pela última
+                vez:</label>
+            <select id="produtoQuimico" th:field="*{produtoQuimico}">
+                <option th:each="produto : ${opcoesProdutoQuimico}" th:value="${produto}" th:text="${produto}"
+                        th:if="${opcoesProdutoQuimico != null}"></option>
+            </select>
+        </div>
+
+        <!-- Como Aplica o Produto -->
+        <div>
+            <label for="comoAplicaProduto">Como aplica os produtos:</label>
+            <select id="comoAplicaProduto" th:field="*{comoAplicaProduto}">
+                <option th:each="aplicacao : ${opcoesComoAplicaProduto}" th:value="${aplicacao}" th:text="${aplicacao}"
+                        th:if="${opcoesComoAplicaProduto != null}"></option>
+            </select>
+        </div>
+
+        <!-- Via de Exposição -->
+        <div>
+            <label for="viaExposicao">Principal Via de Exposição:</label>
+            <select id="viaExposicao" th:field="*{viaExposicao}">
+                <option th:each="via : ${opcoesViaExposicao}" th:value="${via}" th:text="${via}"
+                        th:if="${opcoesViaExposicao != null}"></option>
+            </select>
+        </div>
+
+        <!-- Ficou Doente -->
+        <div>
+            <label for="ficouDoente">Já ficou doente por causa do veneno:</label>
+            <select id="ficouDoente" th:field="*{ficouDoente}">
+                <option th:each="estado : ${opcoesEstadoDeSaude}" th:value="${estado}" th:text="${estado}"
+                        th:if="${opcoesEstadoDeSaude != null}"></option>
+            </select>
+        </div>
+
+        <!-- Quantas Vezes Doente -->
+        <div>
+            <label for="vezesDoente">Quantas vezes você ficou doente por causa
+                do veneno:</label>
+            <select id="vezesDoente" th:field="*{vezesDoente}">
+                <option th:each="vezes : ${opcoesVezesDoente}" th:value="${vezes}" th:text="${vezes}"
+                        th:if="${opcoesVezesDoente != null}"></option>
+            </select>
+        </div>
+
+        <!-- Ficou Internado -->
+        <div>
+            <label for="internado">Alguma vez teve que ser internado:</label>
+            <select id="internado" th:field="*{internado}">
+                <option th:each="internado : ${opcoesEstadoInternado}" th:value="${internado}" th:text="${internado}"
+                        th:if="${opcoesEstadoInternado != null}"></option>
+            </select>
+        </div>
+
+        <!-- Quantas Vezes Internado -->
+        <div>
+            <label for="vezesInternado">Quantas Vezes:</label>
+            <select id="vezesInternado" th:field="*{vezesInternado}">
+                <option th:each="vezes : ${opcoesVezesInternado}" th:value="${vezes}" th:text="${vezes}"
+                        th:if="${opcoesVezesInternado != null}"></option>
+            </select>
+        </div>
+
+        <!-- Quando Aconteceu -->
+        <div>
+            <label for="tempoAconteceu">Há quanto tempo isto aconteceu:</label>
+            <select id="tempoAconteceu" th:field="*{tempoAconteceu}">
+                <option th:each="tempo : ${opcoesTempoAconteceu}" th:value="${tempo}" th:text="${tempo}"
+                        th:if="${opcoesTempoAconteceu != null}"></option>
+            </select>
+        </div>
+
+        <!-- Tipo de Contato -->
+        <div>
+            <label for="tipoContato">Tipo de Contato:</label>
+            <select id="tipoContato" th:field="*{tipoContato}">
+                <option th:each="contato : ${opcoesTipoContato}" th:value="${contato}" th:text="${contato}"
+                        th:if="${opcoesTipoContato != null}"></option>
+            </select>
+        </div>
+
+        <!-- Equipamentos de Proteção -->
+        <div>
+            <label for="equipamentosProtecao">Utiliza Equipamentos de Proteção
+                Individual:</label>
+            <select id="equipamentosProtecao" th:field="*{utilizaEquipamentosProtecao}">
+                <option th:each="equipamento : ${opcoesEquipamentosProtecao}" th:value="${equipamento}" th:text="${equipamento}"></option>
+            </select>
+        </div>
+
+        <!-- Roupas Inadequadas -->
+        <div>
+            <label for="roupaInadequada">Roupa impermeável apropriada:</label>
+            <select id="roupaInadequada" th:field="*{roupaImprapropiada}">
+                <option th:each="roupa : ${opcoesRoupaImprapropiada}" th:value="${roupa}" th:text="${roupa}"></option>
+            </select>
+        </div>
+
+        <!-- Bota -->
+        <div>
+            <label for="bota">Bota apropriada:</label>
+            <select id="bota" th:field="*{bota}">
+                <option th:each="bota : ${opcoesBota}" th:value="${bota}" th:text="${bota}"></option>
+            </select>
+        </div>
+
+        <!-- Luvas -->
+        <div>
+            <label for="luvas">Luvas:</label>
+            <select id="luvas" th:field="*{luvas}">
+                <option th:each="luva : ${opcoesLuvas}" th:value="${luva}" th:text="${luva}"></option>
+            </select>
+        </div>
+
+        <!-- Máscaras -->
+        <div>
+            <label for="mascaras">Máscaras:</label>
+            <select id="mascaras" th:field="*{mascaras}">
+                <option th:each="mascara : ${opcoesMascaras}" th:value="${mascara}" th:text="${mascara}"></option>
+            </select>
+        </div>
+
+        <!-- Óculos de Proteção -->
+        <div>
+            <label for="oculosProtecao">Óculos de Proteção:</label>
+            <select id="oculosProtecao" th:field="*{oculosProtecao}">
+                <option th:each="oculos : ${opcoesOculosProtecao}" th:value="${oculos}" th:text="${oculos}"></option>
+            </select>
+        </div>
+
+        <!-- Protetor Auricular -->
+        <div>
+            <label for="protetorAuricular">Protetor Auricular:</label>
+            <select id="protetorAuricular" th:field="*{protetorAuricular}">
+                <option th:each="protetor : ${opcoesProtetorAuricular}" th:value="${protetor}" th:text="${protetor}"></option>
+            </select>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div style="display: flex; justify-content: center;">
+            <input type="submit" class="btn-submit" th:value="${fichas?.idFicha != null ? 'Atualizar' : 'Cadastrar'}">
+            <a href="/menus/principal">Menu Principal</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
